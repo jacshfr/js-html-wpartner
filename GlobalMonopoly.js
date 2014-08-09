@@ -45,8 +45,17 @@ function diceRoll() {
   roll = Math.floor((Math.random() * 6) + 1);
   document.getElementById("roll").innerHTML = "You rolled a " + roll + "!";
   player1.turn();
+
+    if (player1.position <= 20) {
+
+    document.getElementById("player1").innerHTML = player1.name + " $" + player1.money;
+    }
+    else {
+    document.getElementById("eventEffect").innerHTML = "You've ended the game with $" + player1.money + "!";
+    document.getElementById("")
+    }
   document.getElementById("event").innerHTML = "Would you like to purchase " + countries[player1.position][0] + " for $" + countries[player1.position][1] + "?";
-  document.getElementById("player1").innerHTML = player1.name + " $" + player1.money;
+
 }
 function triggerEvent() {
   if (player1.money < countries[player1.position][1]){
@@ -54,7 +63,7 @@ function triggerEvent() {
   }
   else {
     document.getElementById("eventEffect").innerHTML = countries[player1.position][3];
-    player1.money += countries[player1.position][2];
+    player1.money += (countries[player1.position][2] - countries[player1.position][1]);
     document.getElementById("player1").innerHTML = player1.name + " $" + player1.money;
   }
 }
@@ -62,7 +71,6 @@ function triggerEvent() {
 function game() {
   player1.money += 200;
   document.getElementById("player1").innerHTML = player1.name + " $" + player1.money;
-
 }
 /*playerDrop = true;
 
