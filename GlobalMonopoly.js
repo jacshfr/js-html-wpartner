@@ -1,5 +1,6 @@
 var totalspaces = 20;
 var roll;
+var turnsleft = true;
 
 function Player(name) {
   this.name = name;
@@ -10,15 +11,21 @@ function Player(name) {
 
   }
 }
-function Country(attrs) {
-  this.country = attrs[0];
-  this.cost = attrs[1];
-  this.effect = attrs[2];
-  this.effectMessage = attrs[3];
-  this.position = attrs[4];
+function Button(name) {
+  this.name = name;
+  this.on = function() {
+    document.getElementById(this.name).disabled=false;
+  }
+  this.off = function() {
+    document.getElementById(this.name).disabled=true;
+  }
 }
 
-var player1 = new Player("Player 1");
+var player1 = new Player("Player");
+var rollButton = new Button("rollButton");
+var yesButton = new Button("yesButton");
+var noButton = new Button("noButton");
+var endTurnbutton = new Button("endTurn")
 
 var countries = [
   ["Haiti", 10, -100, "The Dominican Republic opens their borders for all immigrants. The entire population of Haiti defects. The land is worthless. You lose $100.", 1],
@@ -39,6 +46,9 @@ var countries = [
 
 function noEvent() {
   document.getElementById("eventEffect").innerHTML = "<p>That's a shame, maybe next turn.</p>";
+  endTurnbutton.on();
+  yesButton.off();
+  noButton.on();
 }
 
 function diceRoll() {
@@ -46,7 +56,10 @@ function diceRoll() {
   document.getElementById("roll").innerHTML = "You rolled a " + roll + "!";
   player1.turn();
   document.getElementById("event").innerHTML = "Would you like to purchase " + countries[player1.position][0] + " for $" + countries[player1.position][1] + "?";
-  document.getElementById("player1").innerHTML = player1.name + ": $" + player1.money;
+  document.getElementById("player1").innerHTML = player1.name + " $" + player1.money;
+  rollButton.off();
+  yesButton.on();
+  noButton.on();
 }
 
 function triggerEvent() {
@@ -58,6 +71,9 @@ function triggerEvent() {
     player1.money += countries[player1.position][2];
     document.getElementById("player1").innerHTML = player1.name + " $" + player1.money;
   }
+  endTurnbutton.on()
+  yesButton.off()
+  noButton.off();
 }
 
 function game() {
@@ -67,7 +83,19 @@ function game() {
   document.getElementById("eventEffect").innerHTML = "<p></p>";
   document.getElementById("roll").innerHTML = "<p></p>";
   document.getElementById("eventEffect").innerHTML = "<p></p>";
+  endTurnbutton.off();
+  rollButton.on();
+
 }
+function intialize() {
+  yesButton.off();
+  noButton.off();
+  endTurnbutton.off();
+  document.getElementById("player1").innerHTML = player1.name + " $" + player1.money;
+
+}
+
+intialize();
 /*playerDrop = true;
 
 function confirmPlayers() {
