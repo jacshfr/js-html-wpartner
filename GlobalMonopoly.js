@@ -1,14 +1,20 @@
 var totalspaces = 20;
 var roll;
-var turnsleft = true;
+var spaceLeft = true;
 
 function Player(name) {
   this.name = name;
   this.money = 200;
-  this.position = 0;
+  this.position = -1;
   this.turn = function() {
+    if ((this.position + roll) > countries.length) {
+      this.position = countries.length-1;
+      alert("cmon");
+      alert(this.position);
+    }
+    else {
     this.position += roll;
-
+    }
   }
 }
 function Button(name) {
@@ -48,18 +54,21 @@ function noEvent() {
   document.getElementById("eventEffect").innerHTML = "<p>That's a shame, maybe next turn.</p>";
   endTurnbutton.on();
   yesButton.off();
-  noButton.on();
+  noButton.off();
 }
 
 function diceRoll() {
   roll = Math.floor((Math.random() * 6) + 1);
-  document.getElementById("roll").innerHTML = "You rolled a " + roll + "!";
   player1.turn();
+  document.getElementById("roll").innerHTML = "You rolled a " + roll + "!";
+  alert(player1.position);
+
   document.getElementById("event").innerHTML = "Would you like to purchase " + countries[player1.position][0] + " for $" + countries[player1.position][1] + "?";
   document.getElementById("player1").innerHTML = player1.name + " $" + player1.money;
   rollButton.off();
   yesButton.on();
   noButton.on();
+
 }
 
 function triggerEvent() {
@@ -84,7 +93,14 @@ function game() {
   document.getElementById("roll").innerHTML = "<p></p>";
   document.getElementById("eventEffect").innerHTML = "<p></p>";
   endTurnbutton.off();
-  rollButton.on();
+  if (player1.position < countries.length-1) {
+    rollButton.on();
+  }
+  else {
+    alert("you da man");
+    document.getElementById("eventEffect").innerHTML = player1.name + " ended game with $" + player1.money;
+    spaceLeft = false;
+  }
 
 }
 function intialize() {
