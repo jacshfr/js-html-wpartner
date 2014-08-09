@@ -3,7 +3,7 @@ var roll;
 
 function Player(name) {
   this.name = name;
-  this.money = 0;
+  this.money = 200;
   this.position = 0;
   this.turn = function() {
     this.position += roll;
@@ -18,7 +18,7 @@ function Country(attrs) {
   this.position = attrs[4];
 }
 
-var player1 = new Player("Player1");
+var player1 = new Player("Player 1");
 
 var countries = [
   ["Haiti", 10, -100, "The Dominican Republic opens their borders for all immigrants. The entire population of Haiti defects. The land is worthless. You lose $100.", 1],
@@ -46,11 +46,12 @@ function diceRoll() {
   document.getElementById("roll").innerHTML = "You rolled a " + roll + "!";
   player1.turn();
   document.getElementById("event").innerHTML = "Would you like to purchase " + countries[player1.position][0] + " for $" + countries[player1.position][1] + "?";
-  document.getElementById("player1").innerHTML = player1.name + " $" + player1.money;
+  document.getElementById("player1").innerHTML = player1.name + ": $" + player1.money;
 }
+
 function triggerEvent() {
-  if (player1.money < countries[player1.position][1]){
-    document.getElementById("eventEffect").innerHTML = "You do not have enough money";
+  if (player1.money < countries[player1.position][1]) {
+    document.getElementById("eventEffect").innerHTML = "You can't afford " + countries[player1.position][0] + "!";
   }
   else {
     document.getElementById("eventEffect").innerHTML = countries[player1.position][3];
@@ -62,7 +63,10 @@ function triggerEvent() {
 function game() {
   player1.money += 200;
   document.getElementById("player1").innerHTML = player1.name + " $" + player1.money;
-
+  document.getElementById("event").innerHTML = "<p></p>";
+  document.getElementById("eventEffect").innerHTML = "<p></p>";
+  document.getElementById("roll").innerHTML = "<p></p>";
+  document.getElementById("eventEffect").innerHTML = "<p></p>";
 }
 /*playerDrop = true;
 
@@ -79,28 +83,3 @@ function confirmPlayers() {
     document.getElementById("players").innerHTML = "<p>Player " + playerNumber + " </p>";
 
 }*/
-
-
-
-//need to figure out positioning.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*for (var i = 0; i < countries.length; i++){
-  Country(countries[i]);
-}*/
-
-
