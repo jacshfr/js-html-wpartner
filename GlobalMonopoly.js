@@ -24,7 +24,7 @@ var countries = [
   ["United Arab Emirates", 550, 125, "The UAE was rich before and it's still rich now. You earn $125."]
 ];
 
-function Player(name) {
+function Player(name) { //define player object
   this.name = name;
   this.money = 200;
   this.position = 0;
@@ -37,8 +37,8 @@ function Player(name) {
     }
   };
 
-  this.diceRoll = function() {
-    roll = Math.floor((Math.random() * 6) + 1);
+  this.diceRoll = function() { //activates number roll, creates question, turns yes and no buttons on.
+    roll = Math.floor((Math.random() * 4) + 1);
     this.turn();
     document.getElementById("roll").innerHTML = this.name + " rolled a " + roll + "!";
     document.getElementById("event").innerHTML = "Would " + this.name + " like to purchase " + countries[this.position][0] + " for $" + countries[this.position][1] + "?";
@@ -48,7 +48,7 @@ function Player(name) {
     noButton.on();
   };
 
-  this.triggerEvent = function() {
+  this.triggerEvent = function() { //if you don't have enough money, refuses to allow purchase of country. If you do, displays effect and adds effect to player money. Turns yes/no off, end-turn button on.
     if (this.money < countries[this.position][1]) {
       document.getElementById("eventEffect").innerHTML = "You can't afford " + countries[this.position][0] + "!";
     }
@@ -62,7 +62,7 @@ function Player(name) {
     noButton.off();
   };
 
-  this.restartGame = function() {
+  this.restartGame = function() { //adds $100 to the bank after each turn, removes the all messages from previous moves.
     this.money += 100;
     document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
     document.getElementById("event").innerHTML = "<p></p>";
@@ -87,19 +87,19 @@ function Player(name) {
     else {
       player1_active = true;
     }
-    this.winner = function () {
+    /*this.winner = function () { //declares a winner
       if (player1.money > player2.money) {
         player1_active = true;
       }
       else {
         player1_active = false;
       }
-      document.getElementById("eventEffect").innerHTML = this.name + " ended the game with $" + this.money;
+      document.getElementById("eventEffect").innerHTML = player1.name + " ended the game with $" + this.money;*/
     };
   };
 }
 
-function Button(name) {
+function Button(name) { //creates an object for the buttons to be defined in. Creates this.on and this.off functions to disable buttons
   this.name = name;
   this.on = function() {
     document.getElementById(this.name).disabled = false;
@@ -121,7 +121,7 @@ var endTurnbutton = new Button("endTurn");
   }*/
 
 
-function diceRoll() {
+function diceRoll() { //diceRoll activation from button, changes between players
   if (player1_active) {
     player1.diceRoll();
   }
@@ -130,7 +130,7 @@ function diceRoll() {
   }
 }
 
-function triggerEvent() {
+function triggerEvent() { //trigger changing between players
   if (player1_active) {
     player1.triggerEvent();
   }
@@ -139,7 +139,7 @@ function triggerEvent() {
   }
 }
 
-function noEvent() {
+function noEvent() { //noEvent remains constant for both players, turns end button on, yes/no off
   document.getElementById("eventEffect").innerHTML = "<p>That's a shame, maybe next turn.</p>";
   endTurnbutton.on();
   yesButton.off();
@@ -161,15 +161,13 @@ function restartGame() {
   }
 }
 
-function initialize() {
-  yesButton.off();
-  noButton.off();
-  endTurnbutton.off();
+function initialize() { //prints player 2 money at the start of the game
   document.getElementById(player1.name).innerHTML = player1.name + " $" + player1.money;
   document.getElementById(player2.name).innerHTML = player2.name + " $" + player2.money;
 }
 
 initialize();
+
 /*playerDrop = true;
 
 function confirmPlayers() {
