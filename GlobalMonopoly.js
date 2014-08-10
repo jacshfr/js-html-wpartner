@@ -69,7 +69,7 @@ function Player(name) {
       player1_active = true;
     }
   this.winner = function () {
-    if (player1.money < player2.money) {
+    if (player1.money > player2.money) {
       player1_active = true;
     }
     else {
@@ -164,18 +164,3 @@ function initialize() {
 }
 
 initialize();
-/*playerDrop = true;
-
-function confirmPlayers() {
-  var dropval = document.getElementById("drop-down").value;
-  alert(dropval);
-  while (playerDrop) {
-    if
-  }
-  elPlayerNumber = document.getElementById("textbox");
-  var playerNumber = elPlayerNumber.value;
-  parseInt(playerNumber);
-  for (var i = 1; i < playerNumber + 1; i++)
-    document.getElementById("players").innerHTML = "<p>Player " + playerNumber + " </p>";
-
-}*/
