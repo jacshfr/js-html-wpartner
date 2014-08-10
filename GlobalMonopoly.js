@@ -94,8 +94,8 @@ function Player(name) { //define player object
       else {
         player1_active = false;
       }
-      document.getElementById("eventEffect").innerHTML = player1.name + " ended the game with $" + this.money;*/
-    };
+      document.getElementById("eventEffect").innerHTML = player1.name + " ended the game with $" + this.money;
+    };*/
   };
 }
 
