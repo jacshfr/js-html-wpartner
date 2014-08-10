@@ -88,7 +88,7 @@ function Player(name) {
       player1_active = true;
     }
     this.winner = function () {
-      if (player1.money < player2.money) {
+      if (player1.money > player2.money) {
         player1_active = true;
       }
       else {
