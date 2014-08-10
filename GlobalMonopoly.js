@@ -17,7 +17,7 @@ var countries = [
   ["England", 200, -25, "A large group of reenactors visit London and reenact the Boston Tea Party at the Port of London. Tea prices rise and sales decrease. You lose $25."],
   ["Switzerland", 450, 200, "World War III begins. Switzerland remains neutral. You earn $200."],
   ["Russia", 250, 150, "Congratulations! Russia has successfully acquired Ukraine. You earn $150."],
-  ["Guinea", 75, -150, "A ebola epidemic kills the entire population. You lose $150."],
+  ["Guinea", 75, -150, "An ebola epidemic kills the entire population. You lose $150."],
   ["Canada", 400, 0, "Tourism in Canada increases 300%. However, the Prime Minister chooses to invest all profits into his maple-syrup expansion plan. You don't profit. Maybe next year!"],
   ["Netherlands", 275, -75, "The legalization of marijuana in the United States leads to a decline in tourism for the Netherlands. At least the prostitues are still world-class. You only lose $75."],
   ["United States", 500, -1000, "The newly elected United States President decides to pay back the national debt immediately. You lose $1000."],
@@ -94,7 +94,7 @@ function Player(name) {
       else {
         player1_active = false;
       }
-      document.getElementById("eventEffect").innerHTML = this.name + " ended game with $" + this.money;
+      document.getElementById("eventEffect").innerHTML = this.name + " ended the game with $" + this.money;
     };
   };
 }
