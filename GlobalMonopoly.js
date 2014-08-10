@@ -1,6 +1,7 @@
 var totalspaces = 20;
-var roll;
+var roll, winner;
 var spaceLeft = true;
+var player1_active = true;
 
 function Player(name) {
   this.name = name;
@@ -8,15 +9,78 @@ function Player(name) {
   this.position = -1;
   this.turn = function() {
     if ((this.position + roll) > countries.length) {
-      this.position = countries.length-1;
-      alert("cmon");
-      alert(this.position);
+      this.position = countries.length - 1;
     }
     else {
     this.position += roll;
     }
   }
+  this.test = function() {
+    alert(this.position);
+  }
+  this.diceRoll = function() {
+    roll = Math.floor((Math.random() * 6) + 1);
+    this.turn();
+    document.getElementById("roll").innerHTML = this.name + " rolled a " + roll + "!";
+    document.getElementById("event").innerHTML = "Would " + this.name + " like to purchase " + countries[this.position][0] + " for $" + countries[this.position][1] + "?";
+    document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
+    rollButton.off();
+    yesButton.on();
+    noButton.on();
+  }
+  this.triggerEvent = function() {
+    if (this.money < countries[this.position][1]) {
+    document.getElementById("eventEffect").innerHTML = this.name + " can't afford " + countries[this.position][0] + "!";
+    }
+    else {
+      document.getElementById("eventEffect").innerHTML = countries[this.position][3];
+      this.money += countries[this.position][2];
+      document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
+    }
+    endTurnbutton.on();
+    yesButton.off();
+    noButton.off();
+  }
+  this.restartGame = function() {
+    this.money += 200;
+    document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
+    document.getElementById("event").innerHTML = "<p></p>";
+    document.getElementById("eventEffect").innerHTML = "<p></p>";
+    document.getElementById("roll").innerHTML = "<p></p>";
+    document.getElementById("eventEffect").innerHTML = "<p></p>";
+    endTurnbutton.off();
+    if (this.position < countries.length-1) {
+    rollButton.on();
+    }
+    else {
+      if (player1.money < player2.money) {
+        player1_active = true;
+      }
+      else if (player1.money > player2.money) {
+        player1_active = false;
+      }
+      else {
+      }
+    }
+    if (player1_active) {
+      player1_active = false;
+    }
+    else {
+      player1_active = true;
+    }
+  this.winner = function () {
+    if (player1.money < player2.money) {
+      player1_active = true;
+    }
+    else {
+      player1_active = false;
+    }
+    document.getElementById("eventEffect").innerHTML = this.name + " ended game with $" + this.money;
+  }
+  }
 }
+
+
 function Button(name) {
   this.name = name;
   this.on = function() {
@@ -27,11 +91,12 @@ function Button(name) {
   }
 }
 
-var player1 = new Player("Player");
+var player1 = new Player("Player 1 ");
+var player2 = new Player("Player 2 ");
 var rollButton = new Button("rollButton");
 var yesButton = new Button("yesButton");
 var noButton = new Button("noButton");
-var endTurnbutton = new Button("endTurn")
+var endTurnbutton = new Button("endTurn");
 
 var countries = [
   ["Haiti", 10, -100, "The Dominican Republic opens their borders for all immigrants. The entire population of Haiti defects. The land is worthless. You lose $100.", 1],
@@ -58,60 +123,47 @@ function noEvent() {
 }
 
 function diceRoll() {
-  roll = Math.floor((Math.random() * 6) + 1);
-  player1.turn();
-  document.getElementById("roll").innerHTML = "You rolled a " + roll + "!";
-  alert(player1.position);
-
-  document.getElementById("event").innerHTML = "Would you like to purchase " + countries[player1.position][0] + " for $" + countries[player1.position][1] + "?";
-  document.getElementById("player1").innerHTML = player1.name + " $" + player1.money;
-  rollButton.off();
-  yesButton.on();
-  noButton.on();
-
+  if (player1_active) {
+    player1.diceRoll();
+  }
+  else {
+    player2.diceRoll();
+  }
 }
 
 function triggerEvent() {
-  if (player1.money < countries[player1.position][1]) {
-    document.getElementById("eventEffect").innerHTML = "You can't afford " + countries[player1.position][0] + "!";
+  if (player1_active) {
+    player1.triggerEvent();
   }
   else {
-    document.getElementById("eventEffect").innerHTML = countries[player1.position][3];
-    player1.money += countries[player1.position][2];
-    document.getElementById("player1").innerHTML = player1.name + " $" + player1.money;
+    player2.triggerEvent();
   }
-  endTurnbutton.on()
-  yesButton.off()
-  noButton.off();
 }
 
-function game() {
-  player1.money += 200;
-  document.getElementById("player1").innerHTML = player1.name + " $" + player1.money;
-  document.getElementById("event").innerHTML = "<p></p>";
-  document.getElementById("eventEffect").innerHTML = "<p></p>";
-  document.getElementById("roll").innerHTML = "<p></p>";
-  document.getElementById("eventEffect").innerHTML = "<p></p>";
-  endTurnbutton.off();
-  if (player1.position < countries.length-1) {
-    rollButton.on();
+function restartGame() {
+  if (player1.position < countries.length - 1 && player2.position < countries.length - 1) {
+    if (player1_active) {
+      player1.restartGame();
+    }
+    else {
+      player2.restartGame();
+    }
   }
   else {
-    alert("you da man");
-    document.getElementById("eventEffect").innerHTML = player1.name + " ended game with $" + player1.money;
-    spaceLeft = false;
+    endTurnbutton.off();
+    player1.winner();
   }
-
 }
-function intialize() {
+
+function initialize() {
   yesButton.off();
   noButton.off();
   endTurnbutton.off();
-  document.getElementById("player1").innerHTML = player1.name + " $" + player1.money;
-
+  document.getElementById(player1.name).innerHTML = player1.name + " $" + player1.money;
+  document.getElementById(player2.name).innerHTML = player2.name + " $" + player2.money;
 }
 
-intialize();
+initialize();
 /*playerDrop = true;
 
 function confirmPlayers() {
