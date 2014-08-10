@@ -27,7 +27,7 @@ var countries = [
 function Player(name) {
   this.name = name;
   this.money = 200;
-  this.position = -1;
+  this.position = 0;
   this.turn = function() {
     if ((this.position + roll) > countries.length) {
       this.position = countries.length - 1;
@@ -147,7 +147,7 @@ function noEvent() {
 }
 
 function restartGame() {
-  if (player1.position < countries.length - 1 && player2.position < countries.length - 1) {
+  if (player1.position < countries.length && player2.position < countries.length) {
     if (player1_active) {
       player1.restartGame();
     }
