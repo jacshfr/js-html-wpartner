@@ -1,0 +1,15 @@
+* {
+  color: red;
+  text-align: center;
+}
+
+body {
+
+  background-image: url("http://1000watt.net/wp/wp-content/uploads/2012/09/monopoly.jpg");
+  background-repeat: no-repeat;
+}
+
+h1 {
+  color: white;
+  font-family: sans-serif;
+}
