@@ -71,18 +71,7 @@ function Player(name) { //player object creator
     document.getElementById("roll").innerHTML = "<p></p>";
     document.getElementById("eventEffect").innerHTML = "<p></p>";
     endTurnbutton.off();
-    //determines if
-    if (this.position < countries.length-1) {
-      rollButton.on();
-    }
-    else {
-      /*if (player1.money > player2.money) {
-        whoIsWinner(player1);
-      }
-      else {
-        whoIsWinner(player2);
-      }*/
-    }
+    rollButton.on();
     if (player1_active) {
       player1_active = false;
     }
