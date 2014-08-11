@@ -11,7 +11,7 @@ Each player rolls 1 four-sided die.
 
 Each turn, the user gains $100, Players start with $100.
 
-At given positions, user will be prompted to ask if they want to purchase a country with a given return/risk 
+At given positions, user will be prompted to ask if they want to purchase a country with a given return/risk
 
 Player will not know outcome of purchase until after the purchase
 
@@ -28,3 +28,7 @@ Functions: Player, Country
 Methods: Money count
 
 (These were written as a guideline and do not appear exactly the same in the actual code)
+
+
+img from http://www.giantbomb.com/rich-uncle-pennybags/3005-7418/
+
