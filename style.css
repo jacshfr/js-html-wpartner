@@ -1,18 +1,41 @@
 
-body {
 
- /*background-image: url("http://1000watt.net/wp/wp-content/uploads/2012/09/monopoly.jpg");
-  background-repeat: no-repeat; */
-  background-color: blue;
-  color: red;
+
+
+
+body {
+  font-family: serif;
+  margin-top: 25px;
+  background-image: url("http://img0.gtsstatic.com/wallpapers/cc5ea2f85865741869d481ad21fec357_large.jpeg");
+  background-position: top;
+  background-repeat: no-repeat;
   text-align: center;
+  color: #006633;
+
+
+}
+
+img {
+  padding-bottom: 5px;
+  padding-top: 5px ;
 }
 
 h1 {
-  color: purple;
+  font-size: 35px;
+  font-weight: bold;
+  text-shadow: 2px 2px #009966;
+}
+
+button {
+  margin-top: 5px;
+}
+
+#rollButton {
+  margin-top: 2px;
 }
 
 #players {
-  color: blue;
-
+  font-weight: bold;
+  border: 2px;
+  padding-bottom: 2px;
 }
