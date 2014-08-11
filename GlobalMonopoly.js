@@ -1,8 +1,6 @@
 
 //declares variables
-var totalspaces = 20;
-var roll, winner;
-var spaceLeft = true;
+var roll;
 var player1_active = true;
 var countries = [
   ["Test", 0, 0, "Arrays don't start at 1"],
@@ -80,7 +78,7 @@ function Player(name) { //player object creator
     else {
       player1_active = true;
     }
-  }
+  };
 }
 
 function Button(name) { //Button object creator to turn buttons on or off
