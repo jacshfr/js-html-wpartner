@@ -1,3 +1,5 @@
+
+//declares variables
 var totalspaces = 20;
 var roll, winner;
 var spaceLeft = true;
@@ -24,13 +26,13 @@ var countries = [
   ["United Arab Emirates", 550, 125, "The UAE was rich before and it's still rich now. You earn $125."]
 ];
 
-function Player(name) { //define player object
+function Player(name) { //player object creator
   this.name = name;
   this.money = 200;
   this.position = 0;
-  this.turn = function() {
-    if ((this.position + roll) > countries.length) {
-      this.position = countries.length - 1;
+  this.turn = function() {//checks to see if out of room on board, moves player
+    if ((this.position + roll) >= countries.length-1) {
+      this.position = countries.length-1;
     }
     else {
       this.position += roll;
@@ -49,6 +51,9 @@ function Player(name) { //define player object
   };
 
   this.triggerEvent = function() { //if you don't have enough money, refuses to allow purchase of country. If you do, displays effect and adds effect to player money. Turns yes/no off, end-turn button on.
+    endTurnbutton.on();
+    yesButton.off();
+    noButton.off();
     if (this.money < countries[this.position][1]) {
       document.getElementById("eventEffect").innerHTML = "You can't afford " + countries[this.position][0] + "!";
     }
@@ -57,49 +62,26 @@ function Player(name) { //define player object
         this.money += countries[this.position][2];
       document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
     }
-    endTurnbutton.on();
-    yesButton.off();
-    noButton.off();
   };
 
   this.restartGame = function() { //adds $100 to the bank after each turn, removes the all messages from previous moves.
     this.money += 100;
     document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
     document.getElementById("event").innerHTML = "<p></p>";
-    document.getElementById("eventEffect").innerHTML = "<p></p>";
     document.getElementById("roll").innerHTML = "<p></p>";
     document.getElementById("eventEffect").innerHTML = "<p></p>";
     endTurnbutton.off();
-    if (this.position < countries.length-1) {
-      rollButton.on();
-    }
-    else {
-      if (player1.money < player2.money) {
-        player1_active = true;
-      }
-      else {
-        player1_active = false;
-      }
-    }
+    rollButton.on();
     if (player1_active) {
       player1_active = false;
     }
     else {
       player1_active = true;
     }
-    /*this.winner = function () { //declares a winner
-      if (player1.money > player2.money) {
-        player1_active = true;
-      }
-      else {
-        player1_active = false;
-      }
-      document.getElementById("eventEffect").innerHTML = player1.name + " ended the game with $" + this.money;
-    };*/
-  };
+  }
 }
 
-function Button(name) { //creates an object for the buttons to be defined in. Creates this.on and this.off functions to disable buttons
+function Button(name) { //Button object creator to turn buttons on or off
   this.name = name;
   this.on = function() {
     document.getElementById(this.name).disabled = false;
@@ -109,17 +91,14 @@ function Button(name) { //creates an object for the buttons to be defined in. Cr
   };
 }
 
+//creates player objects
 var player1 = new Player("Player 1");
 var player2 = new Player("Player 2");
+//creates button objects
 var rollButton = new Button("rollButton");
 var yesButton = new Button("yesButton");
 var noButton = new Button("noButton");
 var endTurnbutton = new Button("endTurn");
-
-  /*this.test = function() {
-    alert(this.position);
-  }*/
-
 
 function diceRoll() { //diceRoll activation from button, changes between players
   if (player1_active) {
@@ -146,8 +125,10 @@ function noEvent() { //noEvent remains constant for both players, turns end butt
   noButton.off();
 }
 
-function restartGame() {
-  if (player1.position < countries.length && player2.position < countries.length) {
+function restartGame() {//restart game per player or if game is over calls function to decide who winner is
+  //checks to see if both player are still on the board
+  if (player1.position < countries.length-1 && player2.position < countries.length-1) {
+    //if they are, starts their turns
     if (player1_active) {
       player1.restartGame();
     }
@@ -155,31 +136,32 @@ function restartGame() {
       player2.restartGame();
     }
   }
+  //if they have reached the end of the board, declares winner
   else {
     endTurnbutton.off();
-    player1.winner();
+    whoIsWinner();
   }
 }
 
-function initialize() { //prints player 2 money at the start of the game
+function whoIsWinner() { //decides and declares a winner
+  document.getElementById("event").innerHTML = "<p></p>";
+  document.getElementById("roll").innerHTML = "<p></p>";
+  if (player1.money > player2.money) {
+    document.getElementById("eventEffect").innerHTML = "Winner is " + player1.name + " with $" + player1.money;
+  }
+  else {
+    document.getElementById("eventEffect").innerHTML = "Winner is " + player2.name + " with $" + player2.money;
+  }
+
+}
+
+function initialize() { //prints player 2 money at the start of the game, turns off all buttons except roll
   document.getElementById(player1.name).innerHTML = player1.name + " $" + player1.money;
   document.getElementById(player2.name).innerHTML = player2.name + " $" + player2.money;
+  yesButton.off();
+  noButton.off();
+  endTurnbutton.off();
 }
 
-initialize();
+initialize(); //sets up game
 
-/*playerDrop = true;
-
-function confirmPlayers() {
-  var dropval = document.getElementById("drop-down").value;
-  alert(dropval);
-  while (playerDrop) {
-    if
-  }
-  elPlayerNumber = document.getElementById("textbox");
-  var playerNumber = elPlayerNumber.value;
-  parseInt(playerNumber);
-  for (var i = 1; i < playerNumber + 1; i++)
-    document.getElementById("players").innerHTML = "<p>Player " + playerNumber + " </p>";
-
-}*/
