@@ -4,15 +4,13 @@
 
 
 body {
-  font-family: serif;
-  margin-top: 25px;
   background-image: url("http://img0.gtsstatic.com/wallpapers/cc5ea2f85865741869d481ad21fec357_large.jpeg");
   background-position: top;
   background-repeat: no-repeat;
-  text-align: center;
   color: #006633;
-
-
+  font-family: serif;
+  margin-top: 25px;
+  text-align: center;
 }
 
 img {
@@ -35,7 +33,12 @@ button {
 }
 
 #players {
-  font-weight: bold;
   border: 2px;
+  font-weight: bold;
   padding-bottom: 2px;
+}
+
+#eventEffect {
+  color: #006633;
+
 }
