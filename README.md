@@ -7,7 +7,9 @@ Original game and HTML structure by: Jacob Shafer and Kevin Xue
 
 CSS Reset Template: http://meyerweb.com/eric/tools/css/reset/
 
-Resources
+Resources:
+http://www.w3schools.com/cssref/
+
 
 
 
