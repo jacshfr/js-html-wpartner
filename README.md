@@ -1,3 +1,18 @@
+CSS Application to js-html-wpartner
+================
+
+Adds CSS formatting to a classmate's HTML and Javascript website. Using Myer's reset css, all formatting values are set to 0
+
+Original game and HTML structure by: Jacob Shafer and Kevin Xue
+
+CSS Reset Template: http://meyerweb.com/eric/tools/css/reset/
+
+Resources:
+http://www.w3schools.com/cssref/
+
+
+
+
 js-html-wpartner
 ================
 
