@@ -5,28 +5,35 @@
     <link rel='stylesheet' type='text/css' href='skeleton.css'>
     <link rel='stylesheet' type='text/css' href='style.css' />
 
-    <title>GLOBAL MONOPOLY</title>
+    <title>GLOBAL SOMETHING ELSE</title>
   </head>
   <body class="container">
     <header id="header">
       <h1 class="sixteen columns">GLOBAL MONOPOLY</h1>
     </header>
-    <div id="picture">
-      <img src="642443-monopoly.jpg">
-    </div>
-    <section id="players">
-      <p id="Player 1"></p>
-      <p id="Player 2"></p>
-    </section>
-    <section id="gameplay">
-      <button id ="rollButton" onClick="diceRoll()">Roll!</button>
-       <p id="roll"><p>
-       <p id="event"></p>
-      <button id="yesButton" onClick="triggerEvent()">Yes</button>
-      <button id="noButton" onClick="noEvent()">No</button>
-      <p id="eventEffect"></p>
-      <button id="endTurn" onclick="restartGame()">End turn</button>
-    </section>
+    <article class="sixteen columns">
+      <section id="picture" class="seven columns">
+        <img src="642443-monopoly.jpg">
+      </section>
+      <section id="dummy" class="clearfix three columns">
+      </section>
+      <section id="players" class="">
+        <p id="Player 1" class="player1 four columns"></p>
+        <p id="Player 2" class="player2 four columns"></p>
+      </section>
+      <section id="gameplay" class="eight  columns">
+        <button id ="rollButton" onClick="diceRoll()">Roll!</button>
+         <p id="roll"><p>
+         <p id="event"></p>
+        <div id="confirm">
+          <button id="yesButton" onClick="triggerEvent()">Yes</button>
+          <button id="noButton" onClick="noEvent()">No</button>
+        </div>
+        <p id="eventEffect"></p>
+        <button id="endTurn" onclick="restartGame()">End turn</button>
+      </section>
+      </section>
+    </article>
     <script src="GlobalMonopoly.js"></script>
   </body>
   <footer>
