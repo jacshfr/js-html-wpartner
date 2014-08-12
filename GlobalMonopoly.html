@@ -7,20 +7,23 @@
     <title>GLOBAL MONOPOLY</title>
   </head>
   <body>
-    <h1>GLOBAL MONOPOLY</h1>
-    <img src="642443-monopoly.jpg">
+    <div id="header"><h1>GLOBAL MONOPOLY</h1></div>
+    <div id="picture">
+      <img src="642443-monopoly.jpg">
+    </div>
     <section id="players">
       <p id="Player 1"></p>
       <p id="Player 2"></p>
-
     </section>
-    <button id ="rollButton" onClick="diceRoll()">Roll!</button>
-     <section id="roll"></section>
-        <p id="event"></p>
-    <button id="yesButton" onClick="triggerEvent()">Yes</button>
-    <button id="noButton" onClick="noEvent()">No</button>
-    <p id="eventEffect"></p>
-    <button id="endTurn" onclick="restartGame()">End turn</button>
+    <section id="gameplay">
+      <button id ="rollButton" onClick="diceRoll()">Roll!</button>
+       <p id="roll"><p>
+       <p id="event"></p>
+      <button id="yesButton" onClick="triggerEvent()">Yes</button>
+      <button id="noButton" onClick="noEvent()">No</button>
+      <p id="eventEffect"></p>
+      <button id="endTurn" onclick="restartGame()">End turn</button>
+    </section>
     <script src="GlobalMonopoly.js"></script>
   </body>
   <footer>
