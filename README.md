@@ -5,12 +5,19 @@ Adds CSS formatting to a classmate's HTML and Javascript website. Using Myer's r
 
 Original game and HTML structure by: Jacob Shafer and Kevin Xue
 
+Web design by: Hannah Won and Jacob Shafer
+
 CSS Reset Template: http://meyerweb.com/eric/tools/css/reset/
 
-Resources:
+Grid Template: getskeleton.comResources:
+
 http://www.w3schools.com/cssref/
 
+IMG - http://www.giantbomb.com/rich-uncle-pennybags/3005-7418/
 
+BG - http://img0.gtsstatic.com/wallpapers/cc5ea2f85865741869d481ad21fec357_large.jpeg
+
+css3gen.com/text-shadow/
 
 
 js-html-wpartner
@@ -45,5 +52,7 @@ Methods: Money count
 (These were written as a guideline and do not appear exactly the same in the actual code)
 
 
-img from http://www.giantbomb.com/rich-uncle-pennybags/3005-7418/
+
+
+
 

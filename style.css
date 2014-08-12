@@ -2,7 +2,7 @@ body {
   background-image: url("http://img0.gtsstatic.com/wallpapers/cc5ea2f85865741869d481ad21fec357_large.jpeg");
   background-position: top;
   background-repeat: no-repeat;
-  color: #006633;
+  color: #008A2E;
   font-family: serif;
   margin-top: 25px;
   text-align: center;
@@ -24,7 +24,7 @@ img {
 h1 {
   font-size: 35px;
   font-weight: bold;
-  text-shadow: 2px 2px #009966;
+  text-shadow:  3px 3px 2px rgba(240, 208, 95, 1);
   padding-top: 30px;
 }
 
