@@ -42,7 +42,7 @@ function Player(name) { //player object creator
   this.diceRoll = function() { //activates number roll, creates question, turns yes and no buttons on.
     roll = Math.floor((Math.random() * 4) + 1);
     this.turn();
-    document.getElementById("roll").innerHTML = this.name + " rolled a " + roll + "!";
+    $("#roll").text(this.name + " rolled a " + roll + "!");
     document.getElementById("event").innerHTML = "Would " + this.name + " like to purchase " + countries[this.position][0] + " for $" + countries[this.position][1] + "?";
     document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
     rollButton.off();
@@ -92,40 +92,40 @@ function Button(name) { //Button object creator to turn buttons on or off
 }
 
 //creates player objects
-var player1 = new Player("Player 1");
-var player2 = new Player("Player 2");
+var player1 = new Player("Player1");
+var player2 = new Player("Player2");
 //creates button objects
 var rollButton = new Button("rollButton");
 var yesButton = new Button("yesButton");
 var noButton = new Button("noButton");
 var endTurnbutton = new Button("endTurn");
 
-function diceRoll() { //diceRoll activation from button, changes between players
+$("#rollButton").on("click", function() { //diceRoll activation from button, changes between players
   if (player1_active) {
     player1.diceRoll();
   }
   else {
     player2.diceRoll();
   }
-}
+})
 
-function triggerEvent() { //trigger changing between players
+$("#yesButton").on("click", function() { //trigger changing between players
   if (player1_active) {
     player1.triggerEvent();
   }
   else {
     player2.triggerEvent();
   }
-}
+})
 
-function noEvent() { //noEvent remains constant for both players, turns end button on, yes/no off
-  document.getElementById("eventEffect").innerHTML = "<p>That's a shame, maybe next turn.</p>";
+$("#noButton").on("click", function() { //noEvent remains constant for both players, turns end button on, yes/no off
+  $("#eventEffect").text("That's a shame, maybe next turn.");
   endTurnbutton.on();
   yesButton.off();
   noButton.off();
-}
+})
 
-function restartGame() {//restart game per player or if game is over calls function to decide who winner is
+$("#endTurn").on("click", function() {//restart game per player or if game is over calls function to decide who winner is
   //checks to see if both player are still on the board
   if (player1.position < countries.length-1 && player2.position < countries.length-1) {
     //if they are, starts their turns
@@ -141,23 +141,21 @@ function restartGame() {//restart game per player or if game is over calls funct
     endTurnbutton.off();
     whoIsWinner();
   }
-}
+})
 
 function whoIsWinner() { //decides and declares a winner
-  document.getElementById("event").innerHTML = "<p></p>";
-  document.getElementById("roll").innerHTML = "<p></p>";
+  $(".text").text("");
   if (player1.money > player2.money) {
-    document.getElementById("eventEffect").innerHTML = player1.name + " wins with $" + player1.money + "!";
+    $("#eventEffect").text(player1.name + " wins with $" + player1.money + "!");
   }
   else {
-    document.getElementById("eventEffect").innerHTML = player2.name + " wins with $" + player2.money + "!";
+    $("#eventEffect").text(player2.name + " wins with $" + player2.money + "!");
   }
-
 }
 
 function initialize() { //prints player 2 money at the start of the game, turns off all buttons except roll
-  document.getElementById(player1.name).innerHTML = player1.name + " $" + player1.money;
-  document.getElementById(player2.name).innerHTML = player2.name + " $" + player2.money;
+  $("#" + player1.name).text(player1.name + " $" + player1.money);
+  $("#" + player2.name).text(player2.name + " $" + player2.money);
   yesButton.off();
   noButton.off();
   endTurnbutton.off();
