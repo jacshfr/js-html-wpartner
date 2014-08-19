@@ -17,21 +17,23 @@
       <section id="dummy" class="clearfix three columns">
       </section>
       <section id="players" class="">
-        <p id="Player 1" class="player1 four columns"></p>
-        <p id="Player 2" class="player2 four columns"></p>
+        <p id="Player1" class="player1 four columns"></p>
+        <p id="Player2" class="player2 four columns"></p>
       </section>
       <section id="gameplay" class="eight  columns">
-        <button type="image" id ="rollButton" onClick="diceRoll()">Roll!</button>
-         <p id="roll"><p>
-         <p id="event"></p>
+        <button type="image" id ="rollButton">Roll!</button>
+        <p id="roll" class="text"><p>
+         <p id="event" class="text"></p>
         <div id="confirm">
-          <button id="yesButton" onClick="triggerEvent()">Yes</button>
-          <button id="noButton" onClick="noEvent()">No</button>
+          <button id="yesButton">Yes</button>
+          <button id="noButton">No</button>
         </div>
         <p id="eventEffect"></p>
-        <button id="endTurn" onclick="restartGame()">End turn</button>
+        <button id="endTurn">End turn</button>
       </section>
     </article>
+    <script src="jquery-1.11.1.js"></script>
     <script src="GlobalMonopoly.js"></script>
+
   </body>
 </html>
