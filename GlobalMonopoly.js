@@ -1,8 +1,6 @@
 
 //declares variables
-var totalspaces = 20;
-var roll, winner;
-var spaceLeft = true;
+var roll;
 var player1_active = true;
 var countries = [
   ["Test", 0, 0, "Arrays don't start at 1"],
@@ -13,7 +11,7 @@ var countries = [
   ["Kazakhstan", 75, -175, "Remember when Kazakhstan ruined the Aral Sea? The rest of the world does. Global warming happens, water prices rise, you lose $175. Go figure."],
   ["Italy", 150, 50, "Italy changes its name to Atlantis as global warming causes it to sink below ocean level. Tourism dramatically increases. You earn $50."],
   ["Ivory Coast", 100, 200, "Conflict diamonds become all the rage. You earn $200."],
-  ["Ukraine", 150, -200, "The United States gives up on Ukraine and Russia has takes over. You lose your investment and then some. -$200."],
+  ["Ukraine", 150, -200, "The United States gives up on Ukraine and Russia takes over. You lose your investment and then some. -$200."],
   ["Dominican Republic", 100, 25, "The Dominican Republic opens its border to all immigrants. Population nearly doubles. Production slightly increases. You earn $25."],
   ["Japan", 150, -100, "The working population of Japan retires. There is no workforce to take its place. You lose $100."],
   ["Australia", 250, -100, "Global warming causes temperatures to rise and kangaroos to go extinct. Tourists now have no reason to visit. You lose $100."],
@@ -80,7 +78,7 @@ function Player(name) { //player object creator
     else {
       player1_active = true;
     }
-  }
+  };
 }
 
 function Button(name) { //Button object creator to turn buttons on or off
@@ -166,4 +164,3 @@ function initialize() { //prints player 2 money at the start of the game, turns 
 }
 
 initialize(); //sets up game
-

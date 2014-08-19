@@ -1,34 +1,37 @@
-<!DOCTYPE HTML>
+  <!DOCTYPE HTML>
 <html>
   <head>
-    <title>Global Monopoly</title>
+    <link rel='stylesheet' type='text/css' href='base.css' />
+    <link rel='stylesheet' type='text/css' href='skeleton.css'>
+    <link rel='stylesheet' type='text/css' href='style.css' />
+    <title>GLOBAL MONOPOLY</title>
   </head>
-  <body bgcolor="#A9BCF5">
-    <h1>Global Monopoly</h1>
-    <img src="642443-monopoly.jpg">
-    <!-- <h2>Please list the number of players</h2>
-    <select id="drop-down">
-      <option id="select1">1</option>
-      <option id="select2">2</option>
-      <option id="select3">3</option>
-      <option id="select4">4</option>
-    </select>
-    <input type="text" id="textbox" placeholder="1-4"/>
-  <button onClick="confirmPlayers()">Confirm</button>-->
-    <section id="players">
-      <p id="Player 1"></p>
-      <p id="Player 2"></p>
-      <!-- <p id="player3"></p>
-      <p id="player4"></p> -->
-    </section>
-    <button id ="rollButton" onClick="diceRoll()">Roll!</button>
-     <section id="roll"></section>
-        <p id="event"></p>
-    <button id="yesButton" onClick="triggerEvent()">Yes</button> --> <button id="noButton" onClick="noEvent()">No</button>
-    <p id="eventEffect"></p>
-    <button id="endTurn" onclick="restartGame()">End turn</button>
+  <body class="container">
+    <header id="header">
+      <h1 class="sixteen columns">GLOBAL MONOPOLY</h1>
+    </header>
+    <article class="sixteen columns">
+      <section id="picture" class="seven columns">
+        <img src="642443-monopoly.jpg">
+      </section>
+      <section id="dummy" class="clearfix three columns">
+      </section>
+      <section id="players" class="">
+        <p id="Player 1" class="player1 four columns"></p>
+        <p id="Player 2" class="player2 four columns"></p>
+      </section>
+      <section id="gameplay" class="eight  columns">
+        <button type="image" id ="rollButton" onClick="diceRoll()">Roll!</button>
+         <p id="roll"><p>
+         <p id="event"></p>
+        <div id="confirm">
+          <button id="yesButton" onClick="triggerEvent()">Yes</button>
+          <button id="noButton" onClick="noEvent()">No</button>
+        </div>
+        <p id="eventEffect"></p>
+        <button id="endTurn" onclick="restartGame()">End turn</button>
+      </section>
+    </article>
     <script src="GlobalMonopoly.js"></script>
   </body>
-  <footer>
-  </footer>
 </html>
