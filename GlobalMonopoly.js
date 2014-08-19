@@ -43,8 +43,11 @@ function Player(name) { //player object creator
     roll = Math.floor((Math.random() * 4) + 1);
     this.turn();
     $("#roll").text(this.name + " rolled a " + roll + "!");
-    document.getElementById("event").innerHTML = "Would " + this.name + " like to purchase " + countries[this.position][0] + " for $" + countries[this.position][1] + "?";
-    document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
+    $("#event").text("Would " + this.name + " like to purchase " + countries[this.position][0] + " for $" + countries[this.position][1] + "?");
+    $("#this.name").text(this.name + " $" + this.money);
+    // document.getElementById("roll").innerHTML = this.name + " rolled a " + roll + "!";
+    // document.getElementById("event").innerHTML = "Would " + this.name + " like to purchase " + countries[this.position][0] + " for $" + countries[this.position][1] + "?";
+    // document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
     rollButton.off();
     yesButton.on();
     noButton.on();
@@ -55,21 +58,27 @@ function Player(name) { //player object creator
     yesButton.off();
     noButton.off();
     if (this.money < countries[this.position][1]) {
-      document.getElementById("eventEffect").innerHTML = "You can't afford " + countries[this.position][0] + "!";
+      $("#eventEffect").text("You can't afford " + countries[this.position][0] + "!");
+      // document.getElementById("eventEffect").innerHTML = "You can't afford " + countries[this.position][0] + "!";
     }
     else {
-      document.getElementById("eventEffect").innerHTML = countries[this.position][3];
-        this.money += countries[this.position][2];
-      document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
+      $("#eventEffect").text(countries[this.position][3]);
+      // document.getElementById("eventEffect").innerHTML = countries[this.position][3];
+      this.money += countries[this.position][2];
+      // document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
+      console.log(this.name + ".")
+      $("#" + this.name).text(this.name + " $" + this.money);
     }
   };
 
   this.restartGame = function() { //adds $100 to the bank after each turn, removes the all messages from previous moves.
     this.money += 100;
-    document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
-    document.getElementById("event").innerHTML = "<p></p>";
-    document.getElementById("roll").innerHTML = "<p></p>";
-    document.getElementById("eventEffect").innerHTML = "<p></p>";
+    $("#" + this.name).text(this.name + " $" + this.money);
+    // document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
+    $(".text").text("");
+    // document.getElementById("event").innerHTML = "<p></p>";
+    // document.getElementById("roll").innerHTML = "<p></p>";
+    // document.getElementById("eventEffect").innerHTML = "<p></p>";
     endTurnbutton.off();
     rollButton.on();
     if (player1_active) {
@@ -84,10 +93,12 @@ function Player(name) { //player object creator
 function Button(name) { //Button object creator to turn buttons on or off
   this.name = name;
   this.on = function() {
-    document.getElementById(this.name).disabled = false;
+    // document.getElementById(this.name).disabled = false;
+    $("#" + this.name).prop("disabled", false);
   };
   this.off = function() {
-    document.getElementById(this.name).disabled = true;
+    // document.getElementById(this.name).disabled = true;
+    $("#" + this.name).prop("disabled", true);
   };
 }
 
