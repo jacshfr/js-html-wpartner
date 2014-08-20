@@ -33,8 +33,9 @@ article {
   padding-top: 50px;
 }
 
-#roll {
+.text {
   text-align: center;
+  position: relative;
 }
 
 
@@ -49,6 +50,7 @@ button {
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px;
+  position: relative;
 }
 
 #rollButton {
@@ -75,4 +77,9 @@ button {
 
 #eventEffect {
   font-weight: bold;
+  position: relative;
+}
+
+.players {
+  position: relative;
 }

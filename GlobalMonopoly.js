@@ -2,6 +2,10 @@
 //declares variables
 var roll;
 var player1_active = true;
+var textAnimationin = {"top": "-10px", "opacity": "1"};
+var textAnimationout = {"top": "+10px", "opacity": "0"};
+var winAnimate = {"font-size": "30px", "top": "-10px"};
+
 var countries = [
   ["Test", 0, 0, "Arrays don't start at 1"],
   ["Korea (Buy one, get the other one.)", 100, 50, "Kim Jong Un insists he is a magician who can create money. Regardless, you earn $50."],
@@ -42,9 +46,15 @@ function Player(name) { //player object creator
   this.diceRoll = function() { //activates number roll, creates question, turns yes and no buttons on.
     roll = Math.floor((Math.random() * 4) + 1);
     this.turn();
-    $("#roll").text(this.name + " rolled a " + roll + "!");
-    $("#event").text("Would " + this.name + " like to purchase " + countries[this.position][0] + " for $" + countries[this.position][1] + "?");
-    $("#this.name").text(this.name + " $" + this.money);
+    $("#roll")
+      .text(this.name + " rolled a " + roll + "!")
+      .css({"opacity": "0"})
+      .animate(textAnimationin);
+    $("#event").text("Would " + this.name + " like to purchase " + countries[this.position][0] + " for $" + countries[this.position][1] + "?")
+      .css({"opacity": "0"})
+      .animate(textAnimationin);
+    $("#this.name").text(this.name + " $" + this.money)
+
     // document.getElementById("roll").innerHTML = this.name + " rolled a " + roll + "!";
     // document.getElementById("event").innerHTML = "Would " + this.name + " like to purchase " + countries[this.position][0] + " for $" + countries[this.position][1] + "?";
     // document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
@@ -58,11 +68,18 @@ function Player(name) { //player object creator
     yesButton.off();
     noButton.off();
     if (this.money < countries[this.position][1]) {
-      $("#eventEffect").text("You can't afford " + countries[this.position][0] + "!");
+      $("#eventEffect")
+      .css({"opacity": 0})
+      .text("You can't afford " + countries[this.position][0] + "!")
+      .animate(textAnimationin);
+
       // document.getElementById("eventEffect").innerHTML = "You can't afford " + countries[this.position][0] + "!";
     }
     else {
-      $("#eventEffect").text(countries[this.position][3]);
+      $("#eventEffect")
+        // .css({"opacity": 0})
+        .text(countries[this.position][3])
+        .animate(textAnimationin);
       // document.getElementById("eventEffect").innerHTML = countries[this.position][3];
       this.money += countries[this.position][2];
       // document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
@@ -72,10 +89,11 @@ function Player(name) { //player object creator
   };
 
   this.restartGame = function() { //adds $100 to the bank after each turn, removes the all messages from previous moves.
+    $(".animateAll").animate(textAnimationout);
     this.money += 100;
     $("#" + this.name).text(this.name + " $" + this.money);
     // document.getElementById(this.name).innerHTML = this.name + " $" + this.money;
-    $(".text").text("");
+    // $(".text").text("");
     // document.getElementById("event").innerHTML = "<p></p>";
     // document.getElementById("roll").innerHTML = "<p></p>";
     // document.getElementById("eventEffect").innerHTML = "<p></p>";
@@ -130,7 +148,10 @@ $("#yesButton").on("click", function() { //trigger changing between players
 })
 
 $("#noButton").on("click", function() { //noEvent remains constant for both players, turns end button on, yes/no off
-  $("#eventEffect").text("That's a shame, maybe next turn.");
+  $("#eventEffect")
+    .text("That's a shame, maybe next turn.")
+    .css({"opacity": "0"})
+    .animate(textAnimationin);
   endTurnbutton.on();
   yesButton.off();
   noButton.off();
@@ -158,9 +179,11 @@ function whoIsWinner() { //decides and declares a winner
   $(".text").text("");
   if (player1.money > player2.money) {
     $("#eventEffect").text(player1.name + " wins with $" + player1.money + "!");
+    $("#" + player1.name).animate(winAnimate);
   }
   else {
     $("#eventEffect").text(player2.name + " wins with $" + player2.money + "!");
+    $("#" + player2.name).animate(winAnimate);
   }
 }
 
