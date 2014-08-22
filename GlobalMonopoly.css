@@ -1,0 +1,35 @@
+body {
+	background-color: #DC143C;
+}
+
+h1 {
+	color: #3A3AF2;
+	text-align: center;
+}
+
+#players {
+	text-align: center;
+	color: white;
+}
+
+img.displayed {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.button {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+p {
+	text-align: center;
+	color: white;
+}
+
+#roll {
+	text-align: center;
+	color: white;
+}
